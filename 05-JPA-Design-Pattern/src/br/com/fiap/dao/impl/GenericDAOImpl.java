@@ -19,11 +19,10 @@ public abstract class GenericDAOImpl<T,Key> implements GenericDAO<T, Key>{
 		this.em = em;
 		this.clazz = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
-	
-	
+		
 	@Override
-	public void create(T t) {
-		em.persist(t);
+	public void create(T table) {
+		em.persist(table);
 	}
 
 	@Override
@@ -36,9 +35,9 @@ public abstract class GenericDAOImpl<T,Key> implements GenericDAO<T, Key>{
 	}
 
 	@Override
-	public void update(T t) throws SearchNotFoundException {
+	public void update(T table) throws SearchNotFoundException {
 		
-		em.merge(t);
+		em.merge(table);
 	}
 
 	@Override
