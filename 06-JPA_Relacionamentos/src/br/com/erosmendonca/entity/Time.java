@@ -21,7 +21,7 @@ public class Time {
 	@GeneratedValue(generator = "Time", strategy = GenerationType.SEQUENCE)
 	private int codigo;
 	
-	@Column(name = "NM_TIME")
+	@Column(name = "NM_TIME", nullable=false, length=100)
 	private String nome;
 	
 	@Column(name = "DS_TITULOS")
@@ -31,5 +31,68 @@ public class Time {
 	private Tecnico tecnico;
 	
 	@OneToMany(mappedBy="time")
-	private List<Jogador> jogadores;
+	private List<Jogador> jogadores;	
+
+	public Time() {
+		super();
+	}	
+
+	public Time(String nome, int titulos, Tecnico tecnico, List<Jogador> jogadores) {
+		super();
+		this.nome = nome;
+		this.titulos = titulos;
+		this.tecnico = tecnico;
+		this.jogadores = jogadores;
+	}
+
+	public Time(int codigo, String nome, int titulos, Tecnico tecnico, List<Jogador> jogadores) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.titulos = titulos;
+		this.tecnico = tecnico;
+		this.jogadores = jogadores;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getTitulos() {
+		return titulos;
+	}
+
+	public void setTitulos(int titulos) {
+		this.titulos = titulos;
+	}
+
+	public Tecnico getTecnico() {
+		return tecnico;
+	}
+
+	public void setTecnico(Tecnico tecnico) {
+		this.tecnico = tecnico;
+	}
+
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(List<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
+	
+	
 }

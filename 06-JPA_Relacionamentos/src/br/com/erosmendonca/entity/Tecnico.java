@@ -23,7 +23,7 @@ public class Tecnico {
 	@GeneratedValue(generator = "Tecnico", strategy = GenerationType.SEQUENCE)	
 	private int codigo;
 	
-	@Column(name = "NM_TECNICO")
+	@Column(name = "NM_TECNICO", nullable = false, length = 50)
 	private String nome;
 	
 	@Column(name = "DT_NASCIMENTO")
@@ -33,4 +33,57 @@ public class Tecnico {
 	@OneToOne
 	@JoinColumn(name = "CD_TIME")
 	private Time time;
+	
+	public Tecnico() {
+		super();
+	}
+
+	public Tecnico(String nome, Calendar dataNascimento, Time time) {
+		super();
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.time = time;
+	}
+	
+	public Tecnico(int codigo, String nome, Calendar dataNascimento, Time time) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.time = time;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+	
+	
 }

@@ -31,4 +31,57 @@ public class Jogador {
 	@ManyToOne
 	@JoinColumn(name = "CD_TIME")
 	private Time time;
+	
+	public Jogador() {
+		super();
+	}
+
+	public Jogador(String nome, Posicao posicao, Time time) {
+		super();
+		this.nome = nome;
+		this.posicao = posicao;
+		this.time = time;
+	}
+
+	public Jogador(int codigo, String nome, Posicao posicao, Time time) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.posicao = posicao;
+		this.time = time;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Posicao getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Posicao posicao) {
+		this.posicao = posicao;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+	
+	
 }
