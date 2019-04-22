@@ -13,5 +13,9 @@ public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 	List<Cliente> getPorNome(String nome);
 
 	List<Cliente> getAllByDiasReserva(int dias);
+	
+	long countClientsByEstado(String estado);
+
+	Cliente getByCpf(String cpf);
 
 }

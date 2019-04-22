@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,6 @@ import br.com.fiap.dao.ClienteDAO;
 import br.com.fiap.dao.EntityManagerFactorySingleton;
 import br.com.fiap.dao.impl.ClienteDAOImpl;
 import br.com.fiap.entity.Cliente;
-import br.com.fiap.entity.Reserva;
 
 class ClienteDAOTest {
 
@@ -42,7 +42,7 @@ private static ClienteDAO dao;
 	
 	@Test
 	void BuscarPorNome() {
-		List<Cliente> cli = dao.getPorNome("Th");
+		List<Cliente> cli = dao.getPorNome("th");
 		assertNotEquals(0, cli.size());
 		for (Cliente cliente : cli)
 			assertTrue(cliente.getNome().contains("Th"));
@@ -54,5 +54,17 @@ private static ClienteDAO dao;
 		assertNotEquals(0, lista.size());
 		for (Cliente cliente : lista) 
 			assertTrue(cliente.getEndereco().getCidade().getUf().contains("SP"));		
+	}
+	
+	@Test
+	void countByEstadoTeste() {
+		assertEquals(1,dao.countClientsByEstado("SP"));
+	}
+	
+	@Test
+	void getByCpfTeste() {
+		Cliente cliente = dao.getByCpf("98728018736");
+		assertEquals("98728018736",cliente.getCpf());
+		
 	}
 }

@@ -21,7 +21,7 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	@Override
 	public List<Cliente> getPorNome(String nome) {
 		return em.createQuery(
-				"from Cliente c where c.nome like :name", Cliente.class)
+				"from Cliente c where lower(c.nome) like lower(:name)", Cliente.class)
 				.setParameter("name", "%"+nome+"%")
 				.getResultList();				
 	}
@@ -40,6 +40,22 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		return em.createQuery("select r.cliente from Reserva r where r.numeroDias = :d",Cliente.class)
 				.setParameter("d", dias)
 				.getResultList();
+	}
+	
+	@Override
+	public long countClientsByEstado(String estado) {
+		return em.createQuery(
+				"select count(c) from Cliente c where c.endereco.cidade.uf = :D", Long.class)
+				.setParameter("D", estado)
+				.getSingleResult();
+				
+	}
+	
+	@Override
+	public Cliente getByCpf(String cpf) {
+		return em.createNamedQuery("Cliente.getByCpf",Cliente.class)
+				.setParameter("cpf", cpf)
+				.getSingleResult();
 	}
 
 }
